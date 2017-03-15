@@ -13,3 +13,10 @@
 
 Route::get('/', 'HomeController@index')->name("main");
 Route::get('/minor', 'HomeController@minor')->name("minor");
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/', 'Auth\LoginController@index');
+    Route::post('/login', 'Auth\LoginController@login');
+    
+    
+});
