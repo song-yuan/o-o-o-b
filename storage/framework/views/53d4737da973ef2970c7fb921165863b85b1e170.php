@@ -24,6 +24,9 @@
             <li class="<?php echo e(isActiveRoute('minor')); ?>">
                 <a href="<?php echo e(url('/minor')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Minor view</span> </a>
             </li>
+            <li class="<?php echo e(isActiveRoute('bills')); ?>">
+                <a href="<?php echo e(url('/bills')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">快递单</span> </a>
+            </li>
         </ul>
 
     </div>

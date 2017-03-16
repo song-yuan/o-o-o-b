@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Repositories\AdminRepository;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,4 +39,27 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+    
+    public function index() {
+        return view('auth.login');
+    }
+    
+    public function login(Request $request) {        
+        $credentials = $request->only('email', 'password');
+        $adminRep = new AdminRepository();
+		$validator = $adminRep->validator($credentials);
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+        
+        $admin = $adminRep->findBy('email', $credentials['email']);
+		if ($admin && $adminRep->checkPwd($credentials['password'], $admin->password)) {
+            Auth::login($admin);
+            return redirect(url('/'));
+		} else {
+            $validator->errors()->add('email', trans('auth.user_error'));
+        }
+        return redirect()->back()->withInput()->withErrors($validator);
+    }
+    
 }
