@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use App\Repositories\AdminRepository;
 use Auth;
+=======
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+>>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
 
 class LoginController extends Controller
 {
@@ -38,6 +43,7 @@ class LoginController extends Controller
     }
     
     public function index() {
+<<<<<<< HEAD
         return view('auth.login');
     }
     
@@ -57,6 +63,19 @@ class LoginController extends Controller
             $validator->errors()->add('email', trans('auth.user_error'));
         }
         return redirect()->back()->withInput()->withErrors($validator);
+=======
+        
+        return view('auth.login');
+    }
+    
+    public function login(Request $request) {
+        $userName = $request->all('user_name');
+        $password = $request->all('password');
+        
+        
+        
+        var_dump($data);exit;
+>>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
     }
     
 }

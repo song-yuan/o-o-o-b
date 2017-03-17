@@ -11,10 +11,15 @@
 |
 */
 Route::get('/', 'HomeController@index')->name("main");
+<<<<<<< HEAD
+=======
+Route::get('/minor', 'HomeController@minor')->name("minor");
+>>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/', 'Auth\LoginController@index');
     Route::post('/login', 'Auth\LoginController@login');
+<<<<<<< HEAD
     Route::get('/login', 'Auth\LoginController@logout');
 });
 
@@ -37,3 +42,8 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::get('test', 'TestController@index');
+=======
+    
+    
+});
+>>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be

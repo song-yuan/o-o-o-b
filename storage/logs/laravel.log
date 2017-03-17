@@ -3850,6 +3850,7 @@ Stack trace:
 #40 D:\xampp\htdocs\www\coofar.com\backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #41 D:\xampp\htdocs\www\coofar.com\backend\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #42 {main}  
+<<<<<<< HEAD
 [2017-03-16 01:48:04] production.ERROR: exception 'ErrorException' with message 'include(D:\xampp\htdocs\www\coofar.com\backend\vendor\composer/../../app/User.php): failed to open stream: No such file or directory' in D:\xampp\htdocs\www\coofar.com\backend\vendor\composer\ClassLoader.php:414
 Stack trace:
 #0 D:\xampp\htdocs\www\coofar.com\backend\vendor\composer\ClassLoader.php(414): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(D:\\xamp...', 'D:\\xampp\\htdocs...', 414, Array)
@@ -3945,3 +3946,5 @@ Stack trace:
 #37 D:\xampp\htdocs\www\coofar.com\backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(117): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
 #38 D:\xampp\htdocs\www\coofar.com\backend\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #39 {main}  
+=======
+>>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
