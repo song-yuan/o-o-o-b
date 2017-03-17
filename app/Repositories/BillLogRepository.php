@@ -14,7 +14,11 @@ class BillLogRepository extends BaseRepository{
         'password' => 'required|string|min:6',
     ];
     
-    public function lists($billSn, $pageSize = 10) {
+	public function validator(array $data) {
+		return Validator::make($data, $this->rule, trans('bills'));
+	}
+    
+    public function lists($billSn) {
         return $this->model->where('bill_sn', '=', $billSn)->orderBy('log_id', 'desc')->get();
     }
     

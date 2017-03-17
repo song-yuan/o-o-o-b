@@ -1,20 +1,15 @@
 @extends('layouts.app')
-
-@section('title', '登录')
-
+@section('title', '快递单')
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Static Tables</h2>
+        <h2>快递单管理</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a>Tables</a>
+                <a href="<?php echo url('/');?>">首页</a>
             </li>
             <li class="active">
-                <strong>Static Tables</strong>
+                <strong>快递单管理</strong>
             </li>
         </ol>
     </div>
@@ -31,12 +26,34 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 pull-right">
+                            <form>
                             <div class="input-group">
-                                <input type="text" placeholder="Search" class="input-sm form-control">
+                                <input type="text" name="bill_sn" value="<?php echo $billSn;?>" placeholder="Search" class="input-sm form-control">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-sm btn-primary"> 搜索 </button> 
+                                    <input type="submit" class="btn btn-sm btn-primary"> 搜索 </button> 
                                 </span>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="">
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">录入快递单 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo url('bill/create');?>">录入快递单</a></li>
+                                    <li><a href="<?php echo url('bill/remark');?>">录入快递单进度</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">导入 / 导出 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-toggle="modal" data-target="#import_bill">导入快递单</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#import_bill_log">导入进度</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="<?php echo url('bill/billtpl');?>">导出快递模板</a></li>
+                                    <li><a href="<?php echo url('bill/logtpl');?>">导出快递进度模板</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -45,53 +62,97 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>Project </th>
-                                <th>Completed </th>
-                                <th>Task</th>
-                                <th>Date</th>
-                                <th>Action</th>
+                                <th>ID </th>
+                                <th>编码 </th>
+                                <th>发货人</th>
+                                <th>发货地址</th>
+                                <th>收货人</th>
+                                <th>收货地址</th>
+                                <th>日期</th>
+                                <th>进度</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <?php foreach($bills as $bill):?>
                             <tr>
-                                <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-                                <td>Project<small>This is example of project</small></td>
-                                <td><span class="pie">0.52/1.561</span></td>
-                                <td>20%</td>
-                                <td>Jul 14, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                <td><input type="checkbox" class="i-checks" name="input[]" value="<?php echo $bill->bill_id;?>"></td>
+                                <td><?php echo $bill->bill_id;?></td>
+                                <td><?php echo $bill->bill_sn;?></td>
+                                <td><?php echo $bill->sender_name;?></td>
+                                <td><?php echo $bill->sender_address;?></td>
+                                <td><?php echo $bill->receiver_name;?></td>
+                                <td><?php echo $bill->receiver_address;?></td>
+                                <td><?php echo $bill->created_at;?></td>
+                                <td><a href="<?php echo url('bill/logs', array($bill->bill_sn));?>" class="show_log" data-toggle="modal" data-target="#bill_log">查看</a></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>Alpha project</td>
-                                <td><span class="pie">6,9</span></td>
-                                <td>40%</td>
-                                <td>Jul 16, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>Betha project</td>
-                                <td><span class="pie">3,1</span></td>
-                                <td>75%</td>
-                                <td>Jul 18, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>Gamma project</td>
-                                <td><span class="pie">4,9</span></td>
-                                <td>18%</td>
-                                <td>Jul 22, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
+                            <?php endforeach;?>
                             </tbody>
                         </table>
                     </div>
-
+                    <div class="" style="text-align:right">
+                        <?php echo $bills->appends(array('bill_sn' => $billSn))->render(); ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal inmodal" id="import_bill" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated fadeIn">
+                <form action="<?php echo url('bill/import');?>" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">导入快递单</h4>
+                        <small class="font-bold">选择整理好的Excel表,导入到系统中</small>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input type="file" name="bills">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-white" value="Close" data-dismiss="modal">
+                        <input type="submit" class="btn btn-primary" value="上传">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal inmodal" id="import_bill_log" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated fadeIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="bill_log" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content animated fadeIn">
+
+            </div>
+        </div>
+    </div>
 </div>
+@section('scripts')
+@parent
+<script>
+$("#bill_log").on("hidden.bs.modal",function(e){$(this).removeData();}); 
+</script>
+@endsection
 @endsection

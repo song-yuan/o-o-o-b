@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('title', '注册会员')
-@section('content')
+<?php $__env->startSection('title', '注册会员'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Static Tables</h2>
@@ -82,7 +81,8 @@
         </div>
     </div>
 </div>
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 @parent
-@endsection
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -16,6 +16,11 @@ class BillRepository extends BaseRepository{
         'password' => 'required|string|min:6',
     ];
     
+	public function validator(array $data) {
+		return Validator::make($data, $this->rule, trans('bills'));
+	}
+    
+    
     public function lists($billSn = '', $pageSize = 10) {
         if($billSn) {
             return $this->model->where('bill_sn', $billSn)->orderBy('bill_id', 'desc')->paginate($pageSize);

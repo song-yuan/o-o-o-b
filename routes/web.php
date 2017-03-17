@@ -18,6 +18,22 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('/login', 'Auth\LoginController@logout');
 });
 
-Route::group(['prefix' => 'bills'], function () {
-    Route::get('/', 'BillsController@index');
+Route::group(['prefix' => 'bill'], function () {
+    Route::get('/', 'BillController@index');
+    Route::get('/create', 'BillController@create');
+    Route::post('/create', 'BillController@store');
+    Route::get('/remark', 'BillController@remark');
+    Route::post('/remark', 'BillController@login');
+
+    Route::post('/import', 'BillController@import');
+    Route::post('/importlog', 'BillController@importlog');
+    Route::get('/billtpl', 'BillController@billtpl');
+    Route::get('/logtpl', 'BillController@logtpl');
+    Route::get('/logs/{billSn}', 'BillController@logs');
 });
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', 'UserController@index');
+});
+
+Route::get('test', 'TestController@index');

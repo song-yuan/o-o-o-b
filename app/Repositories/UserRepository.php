@@ -1,14 +1,12 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\Bill;
-use App\Models\BillLog;
+use App\Models\User;
 use Validator;
 
-class BillRepository extends BaseRepository{
-    public function __construct()
-	{
-		$this->model = new Bill();
+class UserRepository extends BaseRepository{
+    public function __construct() {
+		$this->model = new User();
 	}
     
     public $rule = [
@@ -16,10 +14,10 @@ class BillRepository extends BaseRepository{
         'password' => 'required|string|min:6',
     ];
     
-    public function lists($billSn = '', $pageSize = 10) {
-        if($billSn) {
-            return $this->model->where('bill_sn', $billSn)->orderBy('bill_id', 'desc')->paginate($pageSize);
+    public function lists($mobile = '', $pageSize = 10) {
+        if($mobile) {
+            return $this->model->where('mobile', $mobile)->orderBy('user_id', 'desc')->paginate($pageSize);
         }
-        return $this->model->orderBy('bill_id', 'desc')->paginate($pageSize);
+        return $this->model->orderBy('user_id', 'desc')->paginate($pageSize);
     }
 }
