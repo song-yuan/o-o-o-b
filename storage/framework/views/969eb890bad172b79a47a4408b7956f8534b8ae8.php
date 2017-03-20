@@ -1,10 +1,9 @@
-@extends('layouts.app')
-@section('title', '录入快递单')
-@section('styles')
+<?php $__env->startSection('title', '录入快递单'); ?>
+<?php $__env->startSection('styles'); ?>
 @parent
-<link rel="stylesheet" href="{!! asset('css/datepicker/datepicker3.css') !!}" />
-@endsection
-@section('content')
+<link rel="stylesheet" href="<?php echo asset('css/datepicker/datepicker3.css'); ?>" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>录入快递单</h2>
@@ -97,9 +96,9 @@
         </div>
     </div>
 </div>
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 @parent
-<script src="{!! asset('js/datapicker/bootstrap-datepicker.js') !!}" type="text/javascript"></script>
+<script src="<?php echo asset('js/datapicker/bootstrap-datepicker.js'); ?>" type="text/javascript"></script>
 <script>
 $('#bill_sended_at').datepicker({
     todayBtn: "linked",
@@ -121,5 +120,6 @@ $('#bill_signed_at').datepicker({
     todayHighlight: true,
 });
 </script>
-@endsection
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

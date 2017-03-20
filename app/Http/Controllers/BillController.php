@@ -30,20 +30,61 @@ class BillController extends Controller
     }
     
     public function store(Request $request) {
-        $data = $request->all();
+        $data = $request->input('bill');
+        $billRep = new BillRepository();
         
-        return view('bills/create');
+        $validator = $billRep->validator($data);
+        if($validator->fails()) {
+            return redirect()->back()->withInput($data)->withErrors($validator);
+        }
+        $billRep->create($data);
+        return redirect(url('bill'));
+    }
+    
+    public function edit($id) {
+        $billRep = new BillRepository();
+        $bill = $billRep->find($id);
+        
+        return view('bills/update', array(
+            'bill' => $bill
+        ));
+    }
+    
+    public function update(Request $request, $id) {
+        $data = $request->input('bill');
+        $billRep = new BillRepository();
+        
+        $validator = $billRep->validator($data);
+        if($validator->fails()) {
+            return redirect()->back()->withInput($data)->withErrors($validator);
+        }
+        $billRep->update($data, $id);
+        return redirect(url('bill'));
     }
 
-    public function remark() {
-        return view('bills/create');
+    
+    
+    public function remark($id) {
+        $billRep = new BillRepository();
+        $bill = $billRep->find($id);
+        return view('bills/remark', array(
+            'bill' => $bill
+        ));
     }
     
-    public function login() {
-        return view('bills/create');
+    public function logged(Request $request, $id) {
+        $data = $request->input('bill_log');
+        $billRep = new BillRepository();
+        $bill = $billRep->find($id);
+        $billLogRep = new BillLogRepository();
+        
+        $validator = $billLogRep->validator($data);
+        if($validator->fails()) {
+            return redirect()->back()->withInput($data)->withErrors($validator);
+        }
+        $billLogRep->create($data);
+        return redirect(url('bill'));
     }
-    
-    
     
     public function logs($billSn) {
         $billLogRep = new BillLogRepository();        
@@ -67,7 +108,8 @@ class BillController extends Controller
             'sender_address',
             'receiver_name',
             'receiver_address',
-            'created_at'
+            'sended_at',
+            'signed_at',
         );
         Excel::load(public_path($filepath), function($reader) use ($fields) {
             $result = $reader->getSheet(0)->toArray();
@@ -95,7 +137,7 @@ class BillController extends Controller
         $fields = array(
             'bill_sn',
             'remark',
-            'created_at'
+            'arrived_at'
         );
         Excel::load(public_path($filepath), function($reader) use ($fields) {
             $result = $reader->getSheet(0)->toArray();
@@ -119,7 +161,8 @@ class BillController extends Controller
             '发货地址',
             '收货人',
             '收货地址',
-            '日期'
+            '发货日期',
+            '签收日期',
         );
         Excel::create('bill_tpl', function($excel) use($title) {
             $excel->sheet('Sheet1', function($sheet) use($title) {

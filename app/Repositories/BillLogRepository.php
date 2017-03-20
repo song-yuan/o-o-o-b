@@ -10,8 +10,9 @@ class BillLogRepository extends BaseRepository{
 	}
     
     public $rule = [
-        'email' => 'required|email',
-        'password' => 'required|string|min:6',
+        'bill_sn' => 'required|between:5,20',
+        'remark' => 'required|between:4,50',
+        'arrived_at' => 'date',
     ];
     
 	public function validator(array $data) {

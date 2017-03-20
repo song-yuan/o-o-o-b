@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', '快递单')
+@section('styles')
+@parent
+@endsection
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
@@ -68,8 +71,9 @@
                                 <th>发货地址</th>
                                 <th>收货人</th>
                                 <th>收货地址</th>
-                                <th>日期</th>
-                                <th>进度</th>
+                                <th>发货日期</th>
+                                <th>签收日期</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -82,8 +86,13 @@
                                 <td><?php echo $bill->sender_address;?></td>
                                 <td><?php echo $bill->receiver_name;?></td>
                                 <td><?php echo $bill->receiver_address;?></td>
-                                <td><?php echo $bill->created_at;?></td>
-                                <td><a href="<?php echo url('bill/logs', array($bill->bill_sn));?>" class="show_log" data-toggle="modal" data-target="#bill_log">查看</a></td>
+                                <td><?php echo $bill->sended_at;?></td>
+                                <td><?php echo $bill->signed_at;?></td>
+                                <td>
+                                    <a href="<?php echo url('bill/logs', array($bill->bill_sn));?>" class="show_log" data-toggle="modal" data-target="#bill_log">查看</a>
+                                    <a href="<?php echo url('bill/update', array($bill->bill_id));?>" class="show_log">编辑</a>
+                                    <a href="<?php echo url('bill/remark', array($bill->bill_id));?>" class="show_log">录入进度</a>
+                                </td>
                             </tr>
                             <?php endforeach;?>
                             </tbody>

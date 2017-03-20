@@ -11,7 +11,8 @@ class Bill extends Model {
         'sender_address', 
         'receiver_name',
         'receiver_address',
-        'receiver_address'
+        'sended_at',
+        'signed_at'
     );
 
     

@@ -12,8 +12,14 @@ class BillRepository extends BaseRepository{
 	}
     
     public $rule = [
-        'email' => 'required|email',
-        'password' => 'required|string|min:6',
+        'bill_sn' => 'required|between:5,20',
+        'sender_name' => 'required|string|between:2,20',
+        'sender_address' => 'required|string|between:6,50',
+        'receiver_name' => 'required|string|between:2,20',
+        'receiver_address' => 'required|string|between:6,50',
+
+        'sended_at' => 'date',
+        'signed_at' => 'date|after:sended_at',
     ];
     
 	public function validator(array $data) {

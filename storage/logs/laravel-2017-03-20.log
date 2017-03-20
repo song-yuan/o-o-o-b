@@ -7,3 +7,29 @@ Stack trace:
 [2017-03-20 09:48:18] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<<' (T_SL)' in D:\xampp\htdocs\www\coofar.com\backend\app\Repositories\AdminRepository.php:3
 Stack trace:
 #0 {main}  
+[2017-03-20 11:34:51] production.ERROR: exception 'Symfony\Component\Console\Exception\CommandNotFoundException' with message 'Command "magirate" is not defined.
+
+Did you mean one of these?
+    migrate
+    migrate:status
+    migrate:refresh
+    migrate:rollback
+    migrate:install
+    migrate:reset' in D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php:534
+Stack trace:
+#0 D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php(182): Symfony\Component\Console\Application->find('magirate')
+#1 D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 D:\xampp\htdocs\www\coofar.com\backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 D:\xampp\htdocs\www\coofar.com\backend\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2017-03-20 11:34:59] production.ERROR: exception 'Symfony\Component\Console\Exception\CommandNotFoundException' with message 'There are no commands defined in the "magirate" namespace.
+
+Did you mean this?
+    migrate' in D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php:488
+Stack trace:
+#0 D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php(520): Symfony\Component\Console\Application->findNamespace('magirate')
+#1 D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php(182): Symfony\Component\Console\Application->find('magirate:refres...')
+#2 D:\xampp\htdocs\www\coofar.com\backend\vendor\symfony\console\Application.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 D:\xampp\htdocs\www\coofar.com\backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(121): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 D:\xampp\htdocs\www\coofar.com\backend\artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 {main}  

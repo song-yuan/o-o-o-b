@@ -7,7 +7,8 @@ class BillLog extends Model {
     protected $primaryKey = 'log_id';
     protected $fillable = array(
         'bill_sn', 
-        'remark'
+        'remark',
+        'arrived_at'
     );
     
 }

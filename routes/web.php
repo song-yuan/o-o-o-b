@@ -20,8 +20,12 @@ Route::group(['prefix' => 'bill'], function () {
     Route::get('/', 'BillController@index');
     Route::get('/create', 'BillController@create');
     Route::post('/create', 'BillController@store');
-    Route::get('/remark', 'BillController@remark');
-    Route::post('/remark', 'BillController@login');
+
+    Route::get('/update/{id}', 'BillController@edit');
+    Route::post('/update/{id}', 'BillController@update');
+    
+    Route::get('/remark/{id}', 'BillController@remark');
+    Route::post('/remark/{id}', 'BillController@login');
 
     Route::post('/import', 'BillController@import');
     Route::post('/importlog', 'BillController@importlog');

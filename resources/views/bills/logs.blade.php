@@ -18,7 +18,7 @@
             <tr>
                 <td><?php echo $log->bill_sn;?></td>
                 <td><?php echo $log->remark;?></td>
-                <td><?php echo $log->created_at;?></td>
+                <td><?php echo $log->arrived_at;?></td>
             </tr>
             <?php endforeach;?>
             </tbody>
