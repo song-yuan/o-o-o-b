@@ -1,7 +1,5 @@
 <?php
 namespace App\Repositories;
-<<<<<<< HEAD
-
 use App\Models\Admin;
 use Validator;
 
@@ -29,5 +27,3 @@ class AdminRepository extends BaseRepository{
         return hashPwd($input) === $password ? true : false ;
     }
 }
-=======
->>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be

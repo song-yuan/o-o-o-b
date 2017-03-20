@@ -125,10 +125,4 @@ abstract class BaseRepository {
         }
         return $model->get($columns);
     }
-<<<<<<< HEAD
-=======
-
-    
->>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
-    
 }

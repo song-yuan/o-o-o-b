@@ -20,11 +20,7 @@
             <form class="m-t" role="form" action="<?php echo url('auth/login');?>" method="POST">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>"/>
                 <div class="form-group">
-<<<<<<< HEAD
                     <input type="text" name="email" class="form-control" placeholder="邮箱" required="">
-=======
-                    <input type="text" name="user_name" class="form-control" placeholder="手机或者邮箱" required="">
->>>>>>> 40d71934e8efdd692ca4a39832f230f02c0c32be
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="密码" required="">
