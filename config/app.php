@@ -182,6 +182,7 @@ return [
          * third
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
     /*
@@ -235,6 +236,7 @@ return [
          * third
          */
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

@@ -1,9 +1,8 @@
-@extends('layouts.app')
-@section('title', '快递单')
-@section('styles')
+<?php $__env->startSection('title', '快递单'); ?>
+<?php $__env->startSection('styles'); ?>
 @parent
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>快递单管理</h2>
@@ -157,10 +156,11 @@
         </div>
     </div>
 </div>
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 @parent
 <script>
 $("#bill_log").on("hidden.bs.modal",function(e){$(this).removeData();}); 
 </script>
-@endsection
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

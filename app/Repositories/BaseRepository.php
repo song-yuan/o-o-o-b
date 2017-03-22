@@ -125,4 +125,24 @@ abstract class BaseRepository {
         }
         return $model->get($columns);
     }
+    
+    public function paginate($where = [], $pageSize = 10) {
+        $model = $this->model;
+        foreach ($where as $field => $value) {
+            if ($value instanceof \Closure) {
+                $model = $model->where($value);
+            } elseif (is_array($value)) {
+                if (count($value) === 3) {
+                    list($field, $operator, $search) = $value;
+                    $model = $model->where($field, $operator, $search);
+                } elseif (count($value) === 2) {
+                    list($field, $search) = $value;
+                    $model = $model->where($field, '=', $search);
+                }
+            } else {
+                $model = $model->where($field, '=', $value);
+            }
+        }
+        return $model->paginate($pageSize);
+    }
 }

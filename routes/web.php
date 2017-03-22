@@ -16,6 +16,28 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/login', 'Auth\LoginController@login');
 });
 
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', 'UserController@index');
+});
+
+Route::group(['prefix' => 'role'], function () {
+    Route::get('/', 'Admin\RoleController@index');
+    Route::get('/create', 'Admin\RoleController@create');
+    Route::post('/create', 'Admin\RoleController@store');
+
+    Route::get('/update/{id}', 'Admin\RoleController@edit');
+    Route::post('/update/{id}', 'Admin\RoleController@update');
+});
+
+Route::group(['prefix' => 'permission'], function () {
+    Route::get('/', 'Admin\PermissionController@index');
+    Route::get('/create', 'Admin\PermissionController@create');
+    Route::post('/create', 'Admin\PermissionController@store');
+
+    Route::get('/update/{id}', 'Admin\PermissionController@edit');
+    Route::post('/update/{id}', 'Admin\PermissionController@update');
+});
+
 Route::group(['prefix' => 'bill'], function () {
     Route::get('/', 'BillController@index');
     Route::get('/create', 'BillController@create');
@@ -34,6 +56,3 @@ Route::group(['prefix' => 'bill'], function () {
     Route::get('/logs/{billSn}', 'BillController@logs');
 });
 
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/', 'UserController@index');
-});
