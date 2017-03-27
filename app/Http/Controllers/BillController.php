@@ -117,7 +117,9 @@ class BillController extends Controller
                 if(!$index || !$row[0]) {
                     continue;
                 }
-                
+                if(!isset($row[6])) {
+                    $row[6] = null;
+                }
                 $billRep = new BillRepository();
                 $data = array_combine($fields, $row);
                 $billRep->create($data);
@@ -167,6 +169,10 @@ class BillController extends Controller
         Excel::create('bill_tpl', function($excel) use($title) {
             $excel->sheet('Sheet1', function($sheet) use($title) {
                 $sheet->row(1, $title);
+                $sheet->setColumnFormat(array(
+                    'F' => 'yyyy-mm-dd hh:mm:ss',
+                    'G' => 'yyyy-mm-dd hh:mm:ss',
+                ));
             });
         })->export('xls');
     }
@@ -180,6 +186,9 @@ class BillController extends Controller
         Excel::create('bill_log_tpl', function($excel) use($title) {
             $excel->sheet('Sheet1', function($sheet) use($title) {
                 $sheet->row(1, $title);
+                $sheet->setColumnFormat(array(
+                    'C' => 'yyyy-mm-dd H:i:s'
+                ));
             });
         })->export('xls');
     }

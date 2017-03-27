@@ -56,3 +56,23 @@ Route::group(['prefix' => 'bill'], function () {
     Route::get('/logs/{billSn}', 'BillController@logs');
 });
 
+Route::group(['prefix' => 'category'], function () {
+    Route::get('/', 'CategoryController@index');
+    Route::get('/create', 'CategoryController@create');
+    Route::post('/create', 'CategoryController@store');
+
+    Route::get('/update/{id}', 'CategoryController@edit');
+    Route::post('/update/{id}', 'CategoryController@update');
+});
+
+Route::group(['prefix' => 'article'], function () {
+    Route::get('/', 'ArticleController@index');
+    Route::get('/create', 'ArticleController@create');
+    Route::post('/create', 'ArticleController@store');
+
+    Route::get('/update/{id}', 'ArticleController@edit');
+    Route::post('/update/{id}', 'ArticleController@update');
+});
+
+
+

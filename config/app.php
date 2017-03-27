@@ -183,6 +183,7 @@ return [
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
     ],
 
     /*

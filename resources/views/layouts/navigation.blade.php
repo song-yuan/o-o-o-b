@@ -21,11 +21,24 @@
             <li class="{{ isActiveRoute('main') }}">
                 <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Main view</span></a>
             </li>
-            <li class="{{ isActiveRoute('minor') }}">
-                <a href="{{ url('/minor') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Minor view</span> </a>
+            <li class="{{ isActiveRoute('bill') }}">
+                <a href="{{ url('/bill') }}"><i class="fa fa-th-large"></i> <span class="nav-label">快递单</span> </a>
             </li>
-            <li class="{{ isActiveRoute('bills') }}">
-                <a href="{{ url('/bills') }}"><i class="fa fa-th-large"></i> <span class="nav-label">快递单</span> </a>
+            
+            <li class="active">
+                <a href="#">
+                    <i class="fa fa-edit"></i> 
+                    <span class="nav-label">文章管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse in">
+                    <li class="active">
+                        <a href="{{ url('/category') }}"><span class="nav-label">文章分类</span> </a>
+                    </li>
+                    <li class="active">
+                        <a href="{{ url('/article') }}"><span class="nav-label">文章管理</span> </a>
+                    </li>
+                </ul>
             </li>
         </ul>
 

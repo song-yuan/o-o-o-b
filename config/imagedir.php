@@ -23,6 +23,7 @@ return array(
         ),
         'allow' => array(
             'application/vnd.ms-excel',
+            'application/vnd.ms-office',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         ),
         'size' => '10000',

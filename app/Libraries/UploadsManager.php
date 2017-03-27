@@ -90,7 +90,6 @@ class UploadsManager {
     public function check($field) {
         $file = Request::file($field);
         $mimeType = $file->getMimeType();
-        
         if(!$mimeType || !in_array($mimeType, $this->allowMimeType)) {
             $this->errorMessage = trans('file.mime_type_error');
             return false;

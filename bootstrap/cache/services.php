@@ -29,6 +29,7 @@
     25 => 'App\\Providers\\RouteServiceProvider',
     26 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     27 => 'Zizaco\\Entrust\\EntrustServiceProvider',
+    28 => 'Stevenyangecho\\UEditor\\UEditorServiceProvider',
   ),
   'eager' => 
   array (
@@ -48,6 +49,7 @@
     13 => 'App\\Providers\\RouteServiceProvider',
     14 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     15 => 'Zizaco\\Entrust\\EntrustServiceProvider',
+    16 => 'Stevenyangecho\\UEditor\\UEditorServiceProvider',
   ),
   'deferred' => 
   array (

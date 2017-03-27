@@ -10,7 +10,8 @@
         "maatwebsite/excel": "^2.1",
         "intervention/image": "^2.3",
         "dflydev/apache-mime-types": "^1.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "stevenyangecho/laravel-u-editor": "~1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
