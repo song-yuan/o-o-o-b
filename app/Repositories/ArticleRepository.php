@@ -21,7 +21,4 @@ class ArticleRepository extends BaseRepository{
 		return Validator::make($data, $this->rule, trans('article'));
 	}
     
-    public function lists($pageSize = 10) {
-        return $this->model->orderBy('category_id', 'desc')->paginate($pageSize);
-    }
 }

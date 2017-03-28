@@ -89,7 +89,7 @@
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">
-                        <button class="btn btn-white" type="submit">返 回</button>
+                        <a class="btn btn-white" href="javascript:history.go(-1);">返 回</a>
                         <button class="btn btn-primary" type="submit" style="margin-left:20px;">提 交</button>
                     </div>
                 </div>

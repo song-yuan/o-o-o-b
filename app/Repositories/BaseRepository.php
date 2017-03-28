@@ -1,5 +1,6 @@
-<?php namespace App\Repositories;
-
+<?php 
+namespace App\Repositories;
+use DB;
 abstract class BaseRepository {
 
 	/**
@@ -126,7 +127,7 @@ abstract class BaseRepository {
         return $model->get($columns);
     }
     
-    public function paginate($where = [], $pageSize = 10) {
+    public function paginate($where = [], $orderBy = ['id', 'desc'], $pageSize = 10) {
         $model = $this->model;
         foreach ($where as $field => $value) {
             if ($value instanceof \Closure) {
@@ -143,6 +144,13 @@ abstract class BaseRepository {
                 $model = $model->where($field, '=', $value);
             }
         }
-        return $model->paginate($pageSize);
+        return $model->orderBy($orderBy[0], $orderBy[1])->paginate($pageSize);
+    }
+    
+    public function lists($column1, $column2 = '') {
+        if(!$column2) {
+            return $this->model->pluck($column1);
+        }
+        return $this->model->pluck($column1, $column2);
     }
 }

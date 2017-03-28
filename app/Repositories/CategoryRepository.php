@@ -19,12 +19,4 @@ class CategoryRepository extends BaseRepository{
 	public function validator(array $data) {
 		return Validator::make($data, $this->rule, trans('category'));
 	}
-    
-    public function lists($pageSize = 10) {
-        return $this->model->orderBy('category_id', 'desc')->paginate($pageSize);
-    }
-    
-    public function selector() {
-        return DB::table('categories')->pluck('name', 'category_id');
-    }
 }

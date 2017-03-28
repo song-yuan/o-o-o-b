@@ -21,6 +21,9 @@
             <li class="<?php echo e(isActiveRoute('main')); ?>">
                 <a href="<?php echo e(url('/')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Main view</span></a>
             </li>
+            <li class="<?php echo e(isActiveRoute('partner')); ?>">
+                <a href="<?php echo e(url('/partner')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">合作伙伴</span> </a>
+            </li>
             <li class="<?php echo e(isActiveRoute('bill')); ?>">
                 <a href="<?php echo e(url('/bill')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">快递单</span> </a>
             </li>

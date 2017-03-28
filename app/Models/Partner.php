@@ -5,11 +5,12 @@ class Partner extends Model {
     
     protected $table = 'partners';
     protected $primaryKey = 'partner_id';
+    public $timestamps = false;
     protected $fillable = array(
         'partner_name', 
         'logo',
         'home_page',
-        'description'
+        'api_url'
     );
     
 }

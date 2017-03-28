@@ -35,8 +35,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th></th>
-                                <th width="10%">ID </th>
+                                <th width="6%">ID </th>
                                 <th>名称 </th>
                                 <th>别名</th>
                                 <th>操作</th>
@@ -45,7 +44,6 @@
                             <tbody>
                             <?php foreach($categories as $category):?>
                             <tr>
-                                <td><input type="checkbox" class="i-checks" name="input[]" value="<?php echo $category->bill_id;?>"></td>
                                 <td><?php echo $category->category_id;?></td>
                                 <td><?php echo $category->name;?></td>
                                 <td><?php echo $category->alias;?></td>

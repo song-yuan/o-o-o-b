@@ -13,13 +13,14 @@ class BillRepository extends BaseRepository{
     
     public $rule = [
         'bill_sn' => 'required|between:5,20',
-        'sender_name' => 'required|string|between:2,20',
-        'sender_address' => 'required|string|between:6,50',
-        'receiver_name' => 'required|string|between:2,20',
-        'receiver_address' => 'required|string|between:6,50',
+        'partner_id' => 'required|integer',
+        'sender_name' => 'string|between:2,20',
+        'sender_address' => 'string|between:6,50',
+        'receiver_name' => 'string|between:2,20',
+        'receiver_address' => 'string|between:6,50',
 
         'sended_at' => 'date',
-        'signed_at' => 'date|after:sended_at',
+        'signed_at' => 'date',
     ];
     
 	public function validator(array $data) {

@@ -13,7 +13,7 @@ class ArticleController extends Controller
     
     public function index() {
         $this->articleRep = new ArticleRepository();
-        $articles = $this->articleRep->lists();
+        $articles = $this->articleRep->paginate([], ['category_id', 'desc']);
         
         return view('article.index', array(
             'articles' => $articles,
@@ -22,7 +22,7 @@ class ArticleController extends Controller
     
     public function create() {
         $catRep = new CategoryRepository();
-        $categories = $catRep->selector();
+        $categories = $catRep->lists('name', 'category_id');
         
         return view('article.create', array(
             'categories' => $categories
@@ -43,7 +43,7 @@ class ArticleController extends Controller
     public function edit($id) {
         $article = $this->articleRep->find($id);
         $catRep = new CategoryRepository();
-        $categories = $catRep->selector();
+        $categories = $catRep->lists('name', 'category_id');
         
         return view('article.update', array(
             'article' => $article,

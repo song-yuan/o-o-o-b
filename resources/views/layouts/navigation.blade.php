@@ -21,6 +21,9 @@
             <li class="{{ isActiveRoute('main') }}">
                 <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Main view</span></a>
             </li>
+            <li class="{{ isActiveRoute('partner') }}">
+                <a href="{{ url('/partner') }}"><i class="fa fa-th-large"></i> <span class="nav-label">合作伙伴</span> </a>
+            </li>
             <li class="{{ isActiveRoute('bill') }}">
                 <a href="{{ url('/bill') }}"><i class="fa fa-th-large"></i> <span class="nav-label">快递单</span> </a>
             </li>

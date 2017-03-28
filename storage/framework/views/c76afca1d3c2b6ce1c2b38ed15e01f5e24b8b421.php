@@ -26,7 +26,7 @@
                 <div class="ibox-title">
                     <h5>快递单列表</h5>
                     <div class="pull-right">
-                        <a class="btn btn-xs btn-primary" href="<?php echo url('category/create');?>"><span class="fa fa-plus-square"></span> 新 增</a>
+                        <a class="btn btn-xs btn-primary" href="<?php echo url('partner/create');?>"><span class="fa fa-plus-square"></span> 新 增</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -34,20 +34,19 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th width="6%">ID </th>
-                                <th>名称 </th>
-                                <th>别名</th>
-                                <th>操作</th>
+                                <th width="6%">名称 </th>
+                                <th width="15%">公司主页</th>
+                                <th>接口地址</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($categories as $category):?>
+                            <?php foreach($partners as $partner):?>
                             <tr>
-                                <td><?php echo $category->category_id;?></td>
-                                <td><?php echo $category->name;?></td>
-                                <td><?php echo $category->alias;?></td>
+                                <td><?php echo $partner->partner_name;?></td>
+                                <td><?php echo $partner->home_page;?></td>
+                                <td><?php echo $partner->api_url;?></td>
                                 <td>
-                                    <a href="<?php echo url('category/update', array($category->category_id));?>">编辑</a>
+                                    <a href="<?php echo url('partner/update', array($partner->partner_id));?>">编辑</a>
                                 </td>
                             </tr>
                             <?php endforeach;?>
@@ -55,7 +54,7 @@
                         </table>
                     </div>
                     <div class="" style="text-align:right">
-                        <?php echo $categories->render(); ?>
+                        <?php echo $partners->render(); ?>
                     </div>
                 </div>
             </div>

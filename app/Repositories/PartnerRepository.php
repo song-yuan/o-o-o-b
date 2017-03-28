@@ -3,7 +3,6 @@ namespace App\Repositories;
 
 use App\Models\Partner;
 use Validator;
-use DB;
 
 class PartnerRepository extends BaseRepository{
     public function __construct()
@@ -12,9 +11,10 @@ class PartnerRepository extends BaseRepository{
 	}
     
     public $rule = [
-        'partner_name' => 'required|between:2,20', 
-        'logo' => 'required|image',
-        'home_page' => 'required|url'
+        'partner_name' => 'required|between:2,20',
+        'logo' => 'image',
+        'home_page' => 'required|url',
+        'api_url' => 'required|url'
     ];
     
 	public function validator(array $data) {

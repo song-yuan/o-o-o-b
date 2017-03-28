@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\BillRepository;
 use App\Repositories\BillLogRepository;
+use App\Repositories\PartnerRepository;
 use App\Libraries\UploadsManager;
 use Excel;
 class BillController extends Controller
@@ -26,7 +27,11 @@ class BillController extends Controller
     }
 
     public function create() {
-        return view('bills/create');
+        $partnerRep = new PartnerRepository();
+        $partners = $partnerRep->lists('partner_name', 'partner_id');
+        return view('bills/create', array(
+            'partners' => $partners
+        ));
     }
     
     public function store(Request $request) {
@@ -61,30 +66,6 @@ class BillController extends Controller
         $billRep->update($data, $id);
         return redirect(url('bill'));
     }
-
-    
-    
-    public function remark($id) {
-        $billRep = new BillRepository();
-        $bill = $billRep->find($id);
-        return view('bills/remark', array(
-            'bill' => $bill
-        ));
-    }
-    
-    public function logged(Request $request, $id) {
-        $data = $request->input('bill_log');
-        $billRep = new BillRepository();
-        $bill = $billRep->find($id);
-        $billLogRep = new BillLogRepository();
-        
-        $validator = $billLogRep->validator($data);
-        if($validator->fails()) {
-            return redirect()->back()->withInput($data)->withErrors($validator);
-        }
-        $billLogRep->create($data);
-        return redirect(url('bill'));
-    }
     
     public function logs($billSn) {
         $billLogRep = new BillLogRepository();        
@@ -104,12 +85,11 @@ class BillController extends Controller
         }
         $fields = array(
             'bill_sn',
+            'partner_id',
             'sender_name',
             'sender_address',
             'receiver_name',
             'receiver_address',
-            'sended_at',
-            'signed_at',
         );
         Excel::load(public_path($filepath), function($reader) use ($fields) {
             $result = $reader->getSheet(0)->toArray();
@@ -117,40 +97,18 @@ class BillController extends Controller
                 if(!$index || !$row[0]) {
                     continue;
                 }
-                if(!isset($row[6])) {
-                    $row[6] = null;
+                $partnerRep = new PartnerRepository();
+                $partner = $partnerRep->findBy('partner_name', $row[1]);
+                if(!$partner) {
+                    continue;
                 }
                 $billRep = new BillRepository();
-                $data = array_combine($fields, $row);
-                $billRep->create($data);
-            }
-        }, 'UTF-8');
-        return redirect('bill');
-    }
-    
-    public function importlog() {
-        if ($request->hasFile('bill_log')) {
-            if($this->fileManager->check('bill_log')) {
-                $filepath = $this->fileManager->saveFile('bill_log');
-            } else {
-                
-            }
-        }
-        $fields = array(
-            'bill_sn',
-            'remark',
-            'arrived_at'
-        );
-        Excel::load(public_path($filepath), function($reader) use ($fields) {
-            $result = $reader->getSheet(0)->toArray();
-            foreach($result as $index => $row) {
-                if(!$index || !$row[0]) {
+                if($billRep->findBy('bill_sn', $row[0])) {
                     continue;
                 }
                 
-                $billLogRep = new BillLogRepository();
                 $data = array_combine($fields, $row);
-                $billLogRep->create($data);
+                $billRep->create($data);
             }
         }, 'UTF-8');
         return redirect('bill');
@@ -159,36 +117,15 @@ class BillController extends Controller
     public function billtpl() {
         $title = array(
             '物流编号',
+            '快递公司',
             '发货人',
             '发货地址',
             '收货人',
             '收货地址',
-            '发货日期',
-            '签收日期',
         );
         Excel::create('bill_tpl', function($excel) use($title) {
             $excel->sheet('Sheet1', function($sheet) use($title) {
                 $sheet->row(1, $title);
-                $sheet->setColumnFormat(array(
-                    'F' => 'yyyy-mm-dd hh:mm:ss',
-                    'G' => 'yyyy-mm-dd hh:mm:ss',
-                ));
-            });
-        })->export('xls');
-    }
-
-    public function logtpl() {
-        $title = array(
-            '物流编号',
-            '备注',
-            '日期'
-        );
-        Excel::create('bill_log_tpl', function($excel) use($title) {
-            $excel->sheet('Sheet1', function($sheet) use($title) {
-                $sheet->row(1, $title);
-                $sheet->setColumnFormat(array(
-                    'C' => 'yyyy-mm-dd H:i:s'
-                ));
             });
         })->export('xls');
     }

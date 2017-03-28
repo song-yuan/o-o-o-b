@@ -12,7 +12,7 @@ class CategoryController extends Controller
     }
     
     public function index() {
-        $categories = $this->catRep->lists();
+        $categories = $this->catRep->paginate([], ['category_id', 'desc']);
         
         return view('category.index', array(
             'categories' => $categories

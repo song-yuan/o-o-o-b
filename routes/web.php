@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'HomeController@index')->name("main");
+Route::get('/test', 'TestController@index');
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/', 'Auth\LoginController@index');
     Route::post('/login', 'Auth\LoginController@login');
@@ -36,6 +37,15 @@ Route::group(['prefix' => 'permission'], function () {
 
     Route::get('/update/{id}', 'Admin\PermissionController@edit');
     Route::post('/update/{id}', 'Admin\PermissionController@update');
+});
+
+Route::group(['prefix' => 'partner'], function () {
+    Route::get('/', 'PartnerController@index');
+    Route::get('/create', 'PartnerController@create');
+    Route::post('/create', 'PartnerController@store');
+
+    Route::get('/update/{id}', 'PartnerController@edit');
+    Route::post('/update/{id}', 'PartnerController@update');
 });
 
 Route::group(['prefix' => 'bill'], function () {

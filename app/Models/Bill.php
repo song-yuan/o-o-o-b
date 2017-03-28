@@ -6,7 +6,8 @@ class Bill extends Model {
     protected $table = 'bills';
     protected $primaryKey = 'bill_id';
     protected $fillable = array(
-        'bill_sn', 
+        'bill_sn',
+        'partner_id',
         'sender_name', 
         'sender_address', 
         'receiver_name',
@@ -15,5 +16,7 @@ class Bill extends Model {
         'signed_at'
     );
 
-    
+    public function partner() {
+        return $this->hasOne('App\Models\Partner','partner_id','partner_id');
+    }
 }
