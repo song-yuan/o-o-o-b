@@ -14,7 +14,7 @@ class ArticleRepository extends BaseRepository{
         'category_id' => 'required|integer', 
         'title' => 'required|string|between:2,255',
         'sub_head' => 'required|string|between:2,255',
-        'content' => 'required|string|between:2,255',
+        'content' => 'required|string',
     ];
     
 	public function validator(array $data) {

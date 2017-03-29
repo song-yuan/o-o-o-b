@@ -35,9 +35,9 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th width="10%">ID </th>
-                                <th>标题 </th>
-                                <th>分类 </th>
+                                <th width="5%">ID </th>
+                                <th width="30%">标题 </th>
+                                <th width="10%">分类 </th>
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -46,8 +46,8 @@
                             <?php foreach($articles as $article):?>
                             <tr>
                                 <td><?php echo $article->article_id;?></td>
-                                <td><?php echo $article->category->name;?></td>
                                 <td><?php echo $article->title;?></td>
+                                <td><?php echo $article->category->name;?></td>
                                 <td><?php echo $article->created_at;?></td>
                                 <td>
                                     <a href="<?php echo url('article/update', array($article->article_id));?>">编辑</a>
