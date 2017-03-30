@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Repositories\BillRepository;
 use App\Repositories\BillLogRepository;
+use App\Libraries\Curl;
 
 class Dhl extends Command
 {
@@ -44,7 +45,7 @@ class Dhl extends Command
      */
     public function handle()
     {
-        $bills = $this->billRep->findWhere(["status" => 0, "partner_id" => 1], ["bill_id", "asc"]);
+        $bills = $this->billRep->findWhere(["status" => 0, "partner_id" => 1]);
         if(!$bills) {return false;}
         foreach($bills as $bill) {
             $logs = $this->getLogs($bill->bill_sn);
@@ -67,6 +68,7 @@ class Dhl extends Command
         $content = $curl->get($url);
         $body = json_decode($content->body);
         $checkpoints = $body->results[0]->checkpoints;
+        $checkpoints =  array_reverse($checkpoints);
         
         $logs = array();
         foreach($checkpoints as $log) {

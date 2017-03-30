@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Repositories\BillRepository;
 use App\Repositories\BillLogRepository;
+use App\Libraries\Curl;
 
 class Ups extends Command
 {
@@ -44,7 +45,7 @@ class Ups extends Command
      */
     public function handle()
     {
-        $bills = $this->billRep->findWhere(["status" => 0, "partner_id" => 1], ["bill_id", "asc"]);
+        $bills = $this->billRep->findWhere(["status" => 0, "partner_id" => 2]);
         if(!$bills) {return false;}
         foreach($bills as $bill) {
             $logs = $this->getLogs($bill->bill_sn);
