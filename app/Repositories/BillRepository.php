@@ -13,11 +13,11 @@ class BillRepository extends BaseRepository{
     
     public $rule = [
         'bill_sn' => 'required|between:5,20',
-        'partner_id' => 'required|integer',
+        'partner_id' => 'required|integer|min:1',
         'sender_name' => 'string|between:2,20',
-        'sender_address' => 'string|between:6,50',
+        'sender_address' => 'string|between:2,50',
         'receiver_name' => 'string|between:2,20',
-        'receiver_address' => 'string|between:6,50',
+        'receiver_address' => 'string|between:2,50',
 
         'sended_at' => 'date',
         'signed_at' => 'date',
@@ -27,11 +27,11 @@ class BillRepository extends BaseRepository{
 		return Validator::make($data, $this->rule, trans('bills'));
 	}
     
-    
-    public function lists($billSn = '', $pageSize = 10) {
+    public function getList($billSn) {
         if($billSn) {
-            return $this->model->where('bill_sn', $billSn)->orderBy('bill_id', 'desc')->paginate($pageSize);
+            return parent::paginate(['bill_sn', $billSn], ['bill_id', 'desc']);
         }
-        return $this->model->orderBy('bill_id', 'desc')->paginate($pageSize);
+        return parent::paginate([], ['bill_id', 'desc']);
     }
+    
 }

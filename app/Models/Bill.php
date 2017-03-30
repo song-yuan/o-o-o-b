@@ -11,9 +11,7 @@ class Bill extends Model {
         'sender_name', 
         'sender_address', 
         'receiver_name',
-        'receiver_address',
-        'sended_at',
-        'signed_at'
+        'receiver_address'
     );
 
     public function partner() {

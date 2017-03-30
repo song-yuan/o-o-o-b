@@ -18,8 +18,7 @@ class BillController extends Controller
         $billRep = new BillRepository();
         $billSn = $request->input('bill_sn', null);
         
-        $bills = $billRep->lists($billSn);
-        
+        $bills = $billRep->getList($billSn);
         return view('bills/index', array(
             'bills' => $bills,
             'billSn' => $billSn
@@ -69,7 +68,7 @@ class BillController extends Controller
     
     public function logs($billSn) {
         $billLogRep = new BillLogRepository();        
-        $billLogs = $billLogRep->lists($billSn);
+        $billLogs = $billLogRep->findAllBy("bill_sn", $billSn, ["log_id", "desc"]);
         return view('bills.logs', array(
             'billLogs' => $billLogs
         ));

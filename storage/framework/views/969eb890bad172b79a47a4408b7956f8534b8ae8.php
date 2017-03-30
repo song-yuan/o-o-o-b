@@ -33,58 +33,51 @@
                 <div class="form-group <?php if($errors->first('bill_sn')) echo 'has-error';?>">
                     <label class="col-lg-2 control-label">物流编号</label>
                     <div class="col-lg-10">
-                        <input type="text" name="bill[bill_sn]" placeholder="物流编号" class="form-control"> 
+                        <input type="text" name="bill[bill_sn]" placeholder="物流编号" class="form-control" value="<?php echo old("bill_sn");?>"> 
                         <span class="help-block m-b-none"><?php echo $errors->first('bill_sn');?></span>
+                    </div>
+                </div>
+                <div class="form-group <?php if($errors->first('partner_id')) echo 'has-error';?>">
+                    <label class="col-lg-2 control-label">快递公司</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" name="bill[partner_id]">
+                            <option value="">请选择快递</option>
+                            <?php foreach($partners as $id => $name):?>
+                            <option value="<?php echo $id;?>" <?php echo old("partner_id")==$id?"checked":"";?>><?php echo $name;?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <span class="help-block m-b-none"><?php echo $errors->first('partner_id');?></span>
                     </div>
                 </div>
                 <div class="form-group <?php if($errors->first('sender_name')) echo 'has-error';?>">
                     <label class="col-lg-2 control-label">发货人</label>
                     <div class="col-lg-10">
-                        <input type="text" name="bill[sender_name]" placeholder="发货人" class="form-control"> 
+                        <input type="text" name="bill[sender_name]" placeholder="发货人" class="form-control" value="<?php echo old("sender_name");?>"> 
                         <span class="help-block m-b-none"><?php echo $errors->first('sender_name');?></span>
                     </div>
                 </div>
                 <div class="form-group <?php if($errors->first('sender_address')) echo 'has-error';?>">
                     <label class="col-lg-2 control-label">发货地址</label>
                     <div class="col-lg-10">
-                        <input type="text" name="bill[sender_address]" placeholder="发货地址" class="form-control"> 
+                        <input type="text" name="bill[sender_address]" placeholder="发货地址" class="form-control" value="<?php echo old("sender_address");?>"> 
                         <span class="help-block m-b-none"><?php echo $errors->first('sender_address');?></span>
                     </div>
                 </div>
                 <div class="form-group <?php if($errors->first('receiver_name')) echo 'has-error';?>">
                     <label class="col-lg-2 control-label">收货人</label>
                     <div class="col-lg-10">
-                        <input type="text" name="bill[receiver_name]" placeholder="收货人" class="form-control"> 
+                        <input type="text" name="bill[receiver_name]" placeholder="收货人" class="form-control" value="<?php echo old("receiver_name");?>"> 
                         <span class="help-block m-b-none"><?php echo $errors->first('receiver_name');?></span>
                     </div>
                 </div>
                 <div class="form-group <?php if($errors->first('receiver_address')) echo 'has-error';?>">
                     <label class="col-lg-2 control-label">收货地址</label>
                     <div class="col-lg-10">
-                        <input type="text" name="bill[receiver_address]" placeholder="收货地址" class="form-control"> 
+                        <input type="text" name="bill[receiver_address]" placeholder="收货地址" class="form-control" value="<?php echo old("receiver_address");?>"> 
                         <span class="help-block m-b-none"><?php echo $errors->first('receiver_address');?></span>
                     </div>
                 </div>
-                <div class="form-group <?php if($errors->first('sended_at')) echo 'has-error';?>">
-                    <label class="col-lg-2 control-label">发货日期</label>
-                    <div class="col-lg-10">
-                        <div class="input-group date">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" id="bill_sended_at" name="bill[sended_at]" class="form-control" placeholder="发货日期" value="<?php echo date('Y-m-d');?>">
-                        </div>
-                        <span class="help-block m-b-none"><?php echo $errors->first('sended_at');?></span>
-                    </div>
-                </div>
-                <div class="form-group <?php if($errors->first('signed_at')) echo 'has-error';?>">
-                    <label class="col-lg-2 control-label">签收日期</label>
-                    <div class="col-lg-10">
-                        <div class="input-group date">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" id="bill_signed_at" name="bill[signed_at]" class="form-control" placeholder="签收日期" value="<?php echo date('Y-m-d');?>">
-                        </div>
-                        <span class="help-block m-b-none"><?php echo $errors->first('signed_at');?></span>
-                    </div>
-                </div>
+                
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">

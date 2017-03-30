@@ -9,16 +9,20 @@
             <thead>
             <tr>
                 <th>物流编码 </th>
-                <th>描述 </th>
+                <th>地点</th>
                 <th>日期</th>
+                <th>时间</th>
+                <th>描述 </th>
             </tr>
             </thead>
             <tbody>
             <?php foreach($billLogs as $log):?>
             <tr>
                 <td><?php echo $log->bill_sn;?></td>
-                <td><?php echo $log->remark;?></td>
-                <td><?php echo $log->arrived_at;?></td>
+                <td><?php echo $log->location;?></td>
+                <td><?php echo $log->date;?></td>
+                <td><?php echo $log->time;?></td>
+                <td><?php echo $log->description;?></td>
             </tr>
             <?php endforeach;?>
             </tbody>

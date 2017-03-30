@@ -11,16 +11,13 @@ class BillLogRepository extends BaseRepository{
     
     public $rule = [
         'bill_sn' => 'required|between:5,20',
-        'remark' => 'required|between:4,50',
-        'arrived_at' => 'date',
+        'date_time' => 'date',
+//        'location' => 'required|string',
+//        'description' => 'required|string|max:255',
     ];
     
 	public function validator(array $data) {
 		return Validator::make($data, $this->rule, trans('bills'));
 	}
-    
-    public function lists($billSn) {
-        return $this->model->where('bill_sn', '=', $billSn)->orderBy('log_id', 'desc')->get();
-    }
     
 }

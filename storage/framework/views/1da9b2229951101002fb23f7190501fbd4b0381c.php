@@ -68,6 +68,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php if($bills):?>
                             <?php foreach($bills as $bill):?>
                             <tr>
                                 <td><?php echo $bill->bill_id;?></td>
@@ -92,12 +93,15 @@
                                 </td>
                             </tr>
                             <?php endforeach;?>
+                            <?php endif;?>
                             </tbody>
                         </table>
                     </div>
+                    <?php if($bills):?>
                     <div class="" style="text-align:right">
                         <?php echo $bills->appends(array('bill_sn' => $billSn))->render(); ?>
                     </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>

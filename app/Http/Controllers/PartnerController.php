@@ -12,7 +12,7 @@ class PartnerController extends Controller
     }
     
     public function index() {
-        $partners = $this->rep->paginate();
+        $partners = $this->rep->paginate([], ["partner_id", "desc"]);
         
         return view('partner.index', array(
             'partners' => $partners

@@ -84,9 +84,9 @@ abstract class BaseRepository {
      * @param array $columns
      * @return mixed
      */
-    public function findAllBy($attribute, $value, $columns = array('*'))
+    public function findAllBy($attribute, $value, $orderBy = ["id", "desc"], $columns = array('*'))
     {
-        return $this->model->where($attribute, '=', $value)->get($columns);
+        return $this->model->where($attribute, '=', $value)->orderBy($orderBy[0], $orderBy[1])->get($columns);
     }
 
     /**
